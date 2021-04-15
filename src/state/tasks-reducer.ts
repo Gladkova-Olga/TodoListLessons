@@ -57,32 +57,42 @@ export const tasksReducer = (state = initialState, action: ActionType) => {
 
         }
         case "CHANGE-STATUS-TASK": {
-            let copyState = {...state};
-            const task = copyState[action.todoListID].find(t => t.id === action.taskID);
+            let todoListTasks = state[action.todoListID];
+            const task = todoListTasks.find(t => t.id === action.taskID);
             if (task) {
                 task.isDone = action.isDone
-
-                // {...state,
-                //     [action.todolistID]: [action.todolistID].map(task => {
-                //         if (task.id === action.taskID) {
-                //             return {...task, isDone: action.isDone}
-                //         } else {
-                //             return task
-                //         }
-                //     })
-                // }
             }
 
-            return copyState
+            return {
+                ...state,
+                [action.todoListID]: state[action.todoListID].map(task => {
+                    if (task.id === action.taskID) {
+                        return {...task, isDone: action.isDone}
+                    } else {
+                        return task
+                    }
+                })
+            }
 
         }
         case "CHANGE-TITLE-TASK": {
-            let copyState = {...state};
-            const task = copyState[action.todoListID].find(t => t.id === action.taskID);
+            let todoListTasks = state[action.todoListID];
+            const task = todoListTasks.find(t => t.id === action.taskID);
             if (task) {
                 task.title = action.title
-                return copyState
             }
+
+            return {
+                ...state,
+                [action.todoListID]: state[action.todoListID].map(task => {
+                    if (task.id === action.taskID) {
+                        return {...task, title: action.title}
+                    } else {
+                        return task
+                    }
+                })
+            }
+
         }
         case "ADD-TODOLIST": {
             let todoListID = action.todoListID;
