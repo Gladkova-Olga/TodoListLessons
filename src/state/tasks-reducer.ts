@@ -39,7 +39,7 @@ export type changeTaskTitleActionType = {
 let initialState: TaskStateType = {}
 
 
-export const tasksReducer = (state = initialState, action: ActionType) => {
+export const tasksReducer = (state = initialState, action: ActionType): TaskStateType => {
     switch (action.type) {
         case 'REMOVE-TASK': {
             let copyState = {...state};

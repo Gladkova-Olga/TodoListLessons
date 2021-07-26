@@ -83,12 +83,7 @@ let dispatch = useDispatch()
 
     const todoListComponents = todoLists.map(tl => {
         let allTasksForTodoList = tasks[tl.id];
-        // if (tl.filter === 'active') {
-        //     tasksForTodoList = tasksForTodoList.filter(t => !t.isDone);
-        // }
-        // if (tl.filter === 'completed') {
-        //     tasksForTodoList = tasksForTodoList.filter(t => t.isDone);
-        // }
+
         return (
             <Grid item key={tl.id}>
                 <Paper elevation={5} style={{padding: '20px'}}>
